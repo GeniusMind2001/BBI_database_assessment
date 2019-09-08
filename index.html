@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <script src="../../model/webService.php"></script>
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+    </header>
+    <body>
+        <div id="registration" class="page">
+            <form method="POST" action="">
+                <input type="text" placeholder="Firstname">
+                <input type="text" placeholder="Lastname">
+                <input type="text" placeholder="Email Address">
+                <input type="text" placeholder="Password">
+                <input type="text" placeholder="Confirm Password">
+                <input type="submit" placeholder="Submit">
+            </form>
+        </div>
+
+        <div id="order_items" class="page">
+            <div id="order_form">
+                <form method="POST" action="">
+                    <input type="text" placeholder="Name">
+                    <input type="submit" value="Next">
+                </form>
+            </div>
+
+            <div id="icecream_form">
+            <form method="POST" action="">
+                <select name="icecream">
+                    <option selected>Choose one...</option>
+                    <!-- auto fill from database -->
+                    <input type="submit" value="next">
+                </select>
+            </form>
+            </div>
+
+            <div id="topping_form">
+            <form method="POST" action="">
+                <select name="topping">
+                    <option selected>Choose one...</option>
+                    <!-- auto fill from database -->
+                    <input type="submit" value="next">
+                </select>
+            </form>
+            </div>
+
+            <div id="sauce_form">
+                <form method="POST" action="">
+                    <select name="sauce">
+                        <option selected>Choose One...</option>
+                        <!-- auto fill from database -->
+                        <input type="submit" value="next">
+                    </select>
+                </form>
+            </div>
+
+            <div id="base_form">
+                <form method="POST" action="">
+                    <select name="base">
+                        <option selected>Choose One...</option>
+                        <!-- auto fill from database -->
+                        <input type="submit" value="Submit">
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div id="display_posts" class="page">
+            <div id="post_container" method="GET">
+                <div id="post_name"><!-- database populates --></div>
+                <div id="post_items"><!-- database populates --></div>
+                <div id="post_images"><!-- unknown how to organise?? --></div>
+            </div>
+        </div>
+        <div id="user_details" class="page" method="GET">
+            <div id="users_firstname"><!-- database populates --></div>
+            <div id="users_lastname"><!-- database populates --></div>
+            <div id="users_emailaddress"><!-- database populates --></div>
+            <div id="assigned_discounts"><!-- database populates --></div>
+            <div id="assigned_orders"><!-- database populates --></div>
+        </div>
+        <div id="edit_user_details" class="page" method="POST">
+            <input type="text" placeholder="firstname">
+            <input type="text" placeholder="lastname">
+            <input type="text" placeholder="email">
+            <input type="submit" value="Save">
+        </div>
+    </body>
+</html>

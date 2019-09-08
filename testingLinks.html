@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../../model/webService.php"></script>
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+    </head>
+
+    <body>
+        <h2>These are my GET/READ paramaters</h2>
+        <div class="crud_parameters">
+            <p>Display all previous orders from user:</p>
+            <a href="../../model/webService.php?page=getAllOrders&user_id=39">webService.php?page=getAllOrders</a>
+        </div>
+        <div class="crud_parameters">
+            <p>This will display all discounts:</p>
+            <a href="../../model/webService.php?page=getAlldiscounts">webService.php?page=getAlldiscounts</a>
+        </div>
+        <div class="crud_parameters">
+            <p>This will get all the user's information:</p>
+            <a href="../../model/webService.php?page=getUserdetails&user_id=40">webService.php?page=getUserdetails</a>
+        </div>
+        <div class="crud_parameters">
+            <p>This will display all the posts up to last week:</p>
+            <a href="../../model/webService.php?page=getAllposts">webService.php?page=getAllposts</a>
+        </div>
+
+        <h2>These are my CREATE/UPDATE paramaters</h2>
+        <div class="crud_parameters">
+            <p>Registration:</p>
+            <form name="createUser" action="../../model/webService.php" method="post" class="submit_forms">
+                <input type="text" name="firstname" placeholder="Firstname" id="firstname">
+                <input type="text" name="lastname" placeholder="Lastname" id="lastname">
+                <input type="email" name="email" placeholder="Email address" id="email">
+                <input type="password" name="password" placeholder="Password" id="password">
+                <input type="text" name="request" value="createUser" hidden="hidden">
+                <input type="submit" value="Submit">
+            </form>
+        </div> 
+
+        <div class="crud_parameters">
+            <form method="post" class="submit_forms" name="updateUserDetails" action="../../model/webService.php">
+                    <p class="submit_forms">Update User Details</p>
+                    <input type="text" name="firstname" placeholder="firstname">
+                    <input type="text" name="lastname" placeholder="lastname">
+                    <input type="text" name="email" placeholder="email">
+                    <input type="text" name="request" value="updateUserDetails" hidden="hidden">
+                    <input type="submit" value="Update">
+            </form>
+        </div>
+
+        <div class="crud_parameters">
+            <p>New Order:</p>
+            <form method="post" class="submit_forms" name="createOrder" action="../../model/webService.php">
+                <input type="text" name="order_name" placeholder="order name">
+                <input type="text" name="discount_id" placeholder="discount_code">
+                <input type="text" name="user_id" value="40" hidden="hidden">
+                <input type="text" name="request" value="createOrder" hidden="hidden">
+                <input type="submit" value="Create Order">
+                <!-- will go expand on in future -->
+            </form>
+        </div>
+        <div class="crud_parameters">
+            <p>Post a previous Order</p>
+            <form method="post" action="../../model/webService.php" name="createPost">
+                <select class="submit_forms" name="order_id">
+                    <option selected>Choose an order to post</option>
+                    <!-- if doesn't wrok change order_id to a value between 8 - 12 -->
+                    <option value="3">Sweet Revenge</option>
+                    <option value="10">hello sweety</option>
+                    <option value="11">Sweety</option>
+                </select>
+                <!-- if it doesnt work change user_id to a value different between 39 - 41 -->
+                <input type="text" name="user_id" value="41" hidden="hidden">
+                <input type="text" name="request" value="createPost" hidden="hidden">
+                <input type="submit" value="Post Order">
+            </form>
+        </div>
+    </body>
+</html>
