@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <script src="../../model/webService.php"></script>
+    <link rel="manifest" href="/view/pages/manifest.json">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../semantic/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="../../semantic/semantic.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</header>
+
+<body>
+    <div id="login_container">
+        <form id="login" class="page" method="POST">
+            <div class="ui left icon input feild">
+                <input type="text" placeholder="Email Address">
+                <i class="envelope outline icon"></i>
+            </div>
+            <div class="ui left icon input feild">
+                <input type="password" placeholder="Password">
+                <i class="lock icon"></i>
+            </div>
+            <input type="submit" class="ui button" value="Sign In">
+        </form>
+    </div>
+
+    <div id="registration" class="page">
+        <form method="POST" action="">
+            <div class="ui left icon input">
+                <input type="text" placeholder="Firstname">
+                <i class="user outline icon"></i>
+            </div>
+            <div class="ui left icon input">
+                <input type="text" placeholder="Lastname">
+                <i class="user outline icon"></i>
+            </div>
+            <div class="ui left icon input">
+                <input type="text" placeholder="Email Address">
+                <i class="envelope outline icon"></i>
+            </div>
+            <div class="ui left icon input">
+                <input type="password" placeholder="Password">
+                <i class="lock icon"></i>
+            </div>
+            <div class="ui left icon input">
+                <input type="password" placeholder="Confirm Password">
+                <i class="lock icon"></i>
+            </div>
+            <input type="submit" class="ui button" placeholder="Submit">
+        </form>
+    </div>
+
+    <div id="order_items" class="page">
+        <!-- form progress bar -->
+        <div class="ui progress">
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+            <div class="label">Form Progress</div>
+        </div>
+
+        <div id="order_name">
+            <form method="POST" action="#icecream_form">
+                <div class="ui left icon input">
+                    <input type="text" placeholder="Name">
+                    <i class="edit outline icon"></i>
+                </div>
+                <input type="submit" class="ui button" value="Next">
+            </form>
+        </div>
+
+        <div id="icecream_form" class="ui form">
+            <form method="POST" action="#topping_form" class="field">
+                <label>Icecream Flavour</label>
+                <select name="icecream">
+                    <option selected>Choose one...</option>
+                    <!-- auto fill from database -->
+                </select>
+                <input type="submit" class="ui button" value="Next">
+            </form>
+        </div>
+
+        <div id="topping_form" class="ui form">
+            <form method="POST" action="#sauce_form" class="field">
+                <label>Toppings</label>
+                <select name="topping">
+                    <option selected>Choose one...</option>
+                    <!-- auto fill from database -->
+                </select>
+                    <input type="submit" class="ui button" value="Next">
+            </form>
+        </div>
+
+        <div id="sauce_form" class="ui form">
+            <form method="POST" action="#base_form" class="field">
+                <label>Sauce</label>
+                <select name="sauce">
+                    <option selected>Choose One...</option>
+                    <!-- auto fill from database -->
+                </select>
+                <input type="submit" class="ui button" value="Next">
+            </form>
+        </div>
+
+        <div id="base_form" class="ui form">
+            <form method="POST" action="" class="field">
+                <label>Base Option</label>
+                <select name="base">
+                    <option selected>Choose One...</option>
+                    <!-- auto fill from database -->
+                </select>
+                <input type="submit" class="ui button" value="Next">
+            </form>
+        </div>
+    </div>
+
+    <div id="display_posts" class="page">
+        <div id="post_container" method="GET" class="field grid-container-posts">
+            <div id="post_name">
+                <!-- database populates -->Post Name</div>
+            <div id="post_items">
+                <!-- database populates -->Post Items</div>
+            <div id="post_quantity">
+                <!-- database populates -->Item Quantity</div>
+            <div id="post_images">
+                <!-- unknown how to organise?? -->Post Image</div>
+            <div id="post_vote">
+                <!-- unknown how to organise?? -->Vote</div>
+        </div>
+    </div>
+
+    <div id="user_details" class="page grid-container-userdetails" method="GET">
+        <div id="users_firstname">
+            <!-- database populates -->Firstname</div>
+        <div id="users_lastname">
+            <!-- database populates -->Lastname</div>
+        <div id="users_emailaddress">
+            <!-- database populates -->Email Address</div>
+        <div id="assigned_discounts">
+            <!-- database populates -->Discounts</div>
+        <div id="assigned_orders">
+            <!-- database populates -->Orders</div>
+    </div>
+    <div id="edit_user_details" class="page field">
+        <form method="POST" action="#icecream_form">
+            <div class="ui left icon input">
+                <input type="text" placeholder="Firstname">
+                <i class="edit outline icon"></i>
+            </div>
+            <div class="ui left icon input">
+                <input type="text" placeholder="Lastname">
+                <i class="edit outline icon"></i>
+            </div>
+            <div class="ui left icon input">
+                <input type="text" placeholder="Email Address">
+                <i class="edit outline icon"></i>
+            </div>
+        <input type="submit" class="ui button" value="Save">
+        </form>
+    </div>
+    <div id="testingLinks" class="page">
+        <h2>These are my GET/READ paramaters</h2>
+        <div class="crud_parameters">
+            <p>Display all previous orders from user:</p>
+            <a href="../../model/webService.php?page=getAllOrders&user_id=39">webService.php?page=getAllOrders</a>
+        </div>
+        <div class="crud_parameters">
+            <p>This will display all discounts:</p>
+            <a href="../../model/webService.php?page=getAlldiscounts">webService.php?page=getAlldiscounts</a>
+        </div>
+        <div class="crud_parameters">
+            <p>This will get all the user's information:</p>
+            <a href="../../model/webService.php?page=getUserdetails&user_id=40">webService.php?page=getUserdetails</a>
+        </div>
+        <div class="crud_parameters">
+            <p>This will display all the posts up to last week:</p>
+            <a href="../../model/webService.php?page=getAllposts">webService.php?page=getAllposts</a>
+        </div>
+    </div>
+</body>
+
+</html>

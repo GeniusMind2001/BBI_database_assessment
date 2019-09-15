@@ -1,0 +1,102 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+h2 {
+    margin: 10px;
+}
+.crud_parameters {
+    margin: 20px;
+    border: solid 1px black;
+    padding: 10px;
+}
+.page {
+    margin: 15px;
+    padding: 20px;
+    border: black 1px solid;
+}
+.input {
+    margin: 5px;
+}
+/* Display Grid */
+/* post grid -nis not wprking not sure why*/
+.grid-container-posts {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: 20px 20px 20px;
+    background-color: lightblue;
+}
+#post_name {
+    grid-column: 1/4;
+    grid-row: 1;
+    background-color: white;
+    margin: 5px;
+}
+#post_items {
+    grid-column: 2/3;
+    grid-row: 2;
+    background-color: grey;
+    margin: 5px;
+}
+#post_quantity {
+    grid-column: 3/4;
+    grid-row: 2;
+    background-color: blue;
+    margin: 5px;
+}
+#post_images {
+    grid-column: 4;
+    grid-row: 1/4;
+    background-color: green;
+    margin: 5px;
+}
+#post_vote {
+    grid-column: 5;
+    grid-row: 2/3;
+    background-color: green;
+    margin: 5px;
+}
+.grid-container-userdetails {
+    display: grid;
+    background-color: lightgrey;
+}
+#users_firstname {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: white;
+    margin: 5px;
+}
+#users_lastname {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: white;
+    margin: 5px;
+}
+#users_emailaddress {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: white;
+    margin: 5px;
+}
+#assigned_discounts {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: white;
+    margin: 5px;
+}
+#assigned_orders {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: white;
+    margin: 5px;
+}
