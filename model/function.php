@@ -16,8 +16,9 @@ class crudControl {
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
         } catch (PDOException $error) {
-            $error = Array("Opps, something went wrong: " => $error);
-            echo json_encode($error);
+            // $error = Array("Opps, something went wrong: " => $error);
+            // echo json_encode($error);
+            throw("log request did not work.");
         }
     }
     public function getAllposts() {
@@ -34,7 +35,8 @@ class crudControl {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($result);
         } catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+           // $reply = Array("something went wrong." => $err);
+           throw("get all posts didn't work.");
         }
     }
 
@@ -48,7 +50,8 @@ class crudControl {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($result);
         } catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+           // $reply = Array("something went wrong." => $err);
+           throw("get all orders did not work.");
         } 
     }
 
@@ -61,7 +64,8 @@ class crudControl {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($result);
         } catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+            // $reply = Array("something went wrong." => $err);
+            throw("get all discounts did not work.");
         }
     }
 
@@ -76,7 +80,8 @@ class crudControl {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($result);
         } catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+           // $reply = Array("something went wrong." => $err);
+           throw("get user details did not work.");
         }   
     } 
 
@@ -94,7 +99,8 @@ class crudControl {
             echo json_encode($reply); 
         }
         catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+            // $reply = Array("something went wrong." => $err);
+            throw("get create user did not work.");
         }
     }
 
@@ -111,7 +117,8 @@ class crudControl {
             echo json_encode($reply);
           // header("../view/pages/orderPage.html")
         } catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+            //  $reply = Array("something went wrong." => $err);
+            throw("get create order did not work.");
         }
     }
  
@@ -126,7 +133,8 @@ class crudControl {
             $reply = Array("your post was successful, order posted was:" => $_POST['order_id']);
             echo json_encode($reply); 
         } catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+            // $reply = Array("something went wrong." => $err);
+            throw("get create posts did not work.");
         }
     }
 
@@ -143,7 +151,8 @@ class crudControl {
             $reply = Array("update successful values submitted:" => $_POST['firstname'], $_POST['lastname'], $_POST['email']);
             echo json_encode($reply);           
         } catch (PDOException $err) {
-            $reply = Array("something went wrong." => $err);
+            // $reply = Array("something went wrong." => $err);
+            throw("get update user details did not work.");
         }
     }
     public function inputFilter($data) {
