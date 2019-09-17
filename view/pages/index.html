@@ -2,13 +2,14 @@
 <html>
 <header>
     <script src="../../model/webService.php"></script>
+    <script src="../../model/javascript.js" defer></script>
     <link rel="manifest" href="/view/pages/manifest.json">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <link rel="stylesheet" type="text/css" href="../../semantic/semantic.min.css">
+   <!-- <link rel="stylesheet" type="text/css" href="../../semantic/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="../../semantic/semantic.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   // <script src="../../semantic/semantic.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 </header>
 
 <body>
@@ -116,33 +117,35 @@
         </div>
     </div>
 
-    <div id="display_posts" class="page">
+    <div id="display_posts" class="page" onclick="display_data()">
         <div id="post_container" method="GET" class="field grid-container-posts">
+            <button onchange="fetch_data()" hidden="hidden">Fetch</button>
             <div id="post_name">
-                <!-- database populates -->Post Name</div>
-            <div id="post_items">
-                <!-- database populates -->Post Items</div>
-            <div id="post_quantity">
-                <!-- database populates -->Item Quantity</div>
-            <div id="post_images">
-                <!-- unknown how to organise?? -->Post Image</div>
+                <!-- database populates --></div>
+            <div id="publish_date">
+                <!-- database populates --></div>
+            <div id="user_firstname">
+                <!-- database populates --></div>
+            <div id="user_lastname">
+                <!-- database populates --></div>
             <div id="post_vote">
-                <!-- unknown how to organise?? -->Vote</div>
+                <!-- unknown how to organise?? --></div>
         </div>
     </div>
 
     <div id="user_details" class="page grid-container-userdetails" method="GET">
         <div id="users_firstname">
-            <!-- database populates -->Firstname</div>
+            <!-- database populates --></div>
         <div id="users_lastname">
-            <!-- database populates -->Lastname</div>
+            <!-- database populates --></div>
         <div id="users_emailaddress">
-            <!-- database populates -->Email Address</div>
+            <!-- database populates --></div>
         <div id="assigned_discounts">
-            <!-- database populates -->Discounts</div>
+            <!-- database populates --></div>
         <div id="assigned_orders">
-            <!-- database populates -->Orders</div>
+            <!-- database populates --></div>
     </div>
+    
     <div id="edit_user_details" class="page field">
         <form method="POST" action="#icecream_form">
             <div class="ui left icon input">

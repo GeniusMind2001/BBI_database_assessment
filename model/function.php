@@ -22,7 +22,7 @@ class crudControl {
         }
     }
     public function getAllposts() {
-        try { 
+        try {
             // Explaination of code can be found in README.txt document.
             $sql = "SELECT posts.vote_num, posts.publish_date, users.firstname, users.lastname, orders.order_name
             FROM posts
@@ -36,7 +36,7 @@ class crudControl {
             echo json_encode($result);
         } catch (PDOException $err) {
            // $reply = Array("something went wrong." => $err);
-           throw("get all posts didn't work.");
+            throw("get all posts didn't work.");
         }
     }
 

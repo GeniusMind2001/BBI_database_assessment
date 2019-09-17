@@ -2,7 +2,7 @@
 header('Content-Type: text/json; charset=UTF-8');
 session_start();
 
-try {
+//try {
     include('function.php');
     include('sessions.php');
 
@@ -15,7 +15,7 @@ try {
     $crudObj->logRequest();
     $sessionControl->referrexists();
     $sessionControl->domainlock();
-    $sessionControl->rateLimitChecker();
+    //$sessionControl->rateLimitChecker();
     $sessionControl->Rate24HourCheck();
 
     if(isset($_GET['page'])) {
@@ -33,11 +33,11 @@ try {
                 $crudObj->getUserdetails();
             break;
             default:
-                throw new Exception("something went wrong.");
+                throw new RuntimeException("something went wrong.");
             break;
         }
     } else {
-        throw new Exception("something went wrong.");
+        throw new RuntimeException("something went wrong.");
     }
 
     if(isset($_POST['request'])) {
@@ -50,7 +50,7 @@ try {
                 $password = password_hash($mypassword, PASSWORD_DEFAULT);
                 $crudObj->createUser($firstname, $lastname, $email, $password);
             } else {
-                throw new Exception("something went wrong, create user didn't run.");
+                throw new RuntimeException("something went wrong, create user didn't run.");
             }
         }
 
@@ -61,7 +61,7 @@ try {
                 $user_id = !empty($_POST['user_id'])? $crudObj->inputFilter(($_POST['user_id'])): null;
                 $crudObj->createOrder($order_name, $discount_id, $user_id);
             } else {
-                throw new Exception("something went wrong, create order didn't run.");
+                throw new RuntimeException("something went wrong, create order didn't run.");
             }
         }
 
@@ -71,7 +71,7 @@ try {
                 $user_id = !empty($_POST['user_id'])? $crudObj->inputFilter(($_POST['user_id'])): null;
                 $crudObj->createPost($order_id, $user_id);
             } else {
-                throw new Exception("something went wrong, create post didn't run.");
+                throw new RuntimeException("something went wrong, create post didn't run.");
             }
         } 
 
@@ -82,11 +82,11 @@ try {
                 $email = !empty($_POST['email'])? $crudObj->inputFilter(($_POST['email'])): null;
                 $crudObj->updateUserDetails($firstname, $lastname, $email);
             } else {
-                throw new Exception("something went wrong, update user details didn't run.");
+                throw new RuntimeException("something went wrong, update user details didn't run.");
             }
         }
     }
-} catch(Exception $error) {
+/*} catch(RuntimeException $error) {
     echo json_encode(Array("opps"=>"something went wrong."));
-}
+}*/
 ?>
