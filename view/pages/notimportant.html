@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../../model/javascript.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+</head>
+
+<body onload="run_js()">
+    <ul id="menuitems" class="ui sidebar vertical left inverted menu">
+        <li id="menu_login" class="item">Log in</li>
+        <li id="menu_registration" class="item">Registration</li>
+        <li id="menu_posts" class="item" onclick="includePosts()">Posts</li>
+        <li id="menu_orderitems" class="item" onclick="show_ordername()">Make an Order</li>
+        <li id="menu_details" class="item" onclick="includeAccount()">Account</li>
+        <li id="menu_editdetails" class="item">Edit Details</li>
+        <li id="menu_testingLinks" class="item">testing links</li> <!-- Only here for debug purposes -->
+        <input type="button" value="Dark/Light Theme" id="toggle-theme" class="ui button">
+    </ul>
+    <div id="spinner" class="ui active centered inline loader"></div>
+    <div class="ui basic top fixed menu">
+        <a id="toggle" class="item">
+            <i class="sidebar icon"></i>
+        </a>
+    </div>
+    <div id="page_container" class="pusher">
+        <div class="ui container page">
+            <div id="page_login" class="page">
+                <form id="login">
+                    <h2>Login</h2>
+                    <div class="ui left icon fluid input feild">
+                        <input type="email" id="login_email" placeholder="Email Address" required>
+                        <i class="envelope outline icon"></i>
+                    </div>
+                    <div class="ui left icon fluid input feild">
+                        <input type="current-password" id="login_password" placeholder="Password" pattern=".{8,}" required>
+                        <i class="lock icon"></i>
+                    </div>
+                    <input type="button" class="ui fluid button" onclick="login()" value="Sign In">
+                </form>
+            </div>
+            <div id="page_registration" class="page">
+                <form>
+                    <h2>Registration</h2>
+                    <div class="ui left icon fluid input">
+                        <input type="text" placeholder="Firstname" id="firstname" maxlength="30" pattern="\S+.*"
+                            required>
+                        <i class="user outline icon"></i>
+                    </div>
+                    <div class="ui left icon fluid input">
+                        <input type="text" placeholder="Lastname" id="lastname" maxlength="30" pattern="\S+.*">
+                        <i class="user outline icon"></i>
+                    </div>
+                    <div class="ui left icon fluid input">
+                        <input type="email" placeholder="Email Address" id="email" required>
+                        <i class="envelope outline icon"></i>
+                    </div>
+                    <div class="ui left icon fluid input">
+                        <input type="new-password" placeholder="Password" id="password" pattern=".{8,}" required>
+                        <i class="lock icon"></i>
+                    </div>
+                    <div class="ui left icon fluid input">
+                        <input type="new-password" placeholder="Confirm Password" pattern=".{8,}" id="password_check"
+                            required>
+                        <i class="lock icon"></i>
+                    </div>
+                    <input type="button" class="ui fluid button" value="Submit" onclick="registration()">
+                </form>
+            </div>
+            <div id="page_orderitems" class="page">
+                <h2>Create New Order</h2>
+                <!-- form progress bar -->
+                <div class="ui teal progress" id="example2">
+                    <div class="bar" id="progress_bar"></div>
+                </div>
+                <div id="section_ordername" class="section">
+                    <form class="submit_forms">
+                        <div class="ui left icon fluid input">
+                            <input type="text" id="order_name" placeholder="Name" maxlength="30" pattern="\S+.*"
+                                required>
+                            <i class="edit outline icon"></i>
+                        </div>
+                        <div class="ui left icon fluid input">
+                            <input type="number" id="discount_code" placeholder="discount_code">
+                            <i class="edit outline icon"></i>
+                        </div>
+                        <div class="ui left icon fluid input">
+                            <input type="number" id="user_id" placeholder="Insert 39">
+                            <i class="edit outline icon"></i>
+                        </div>
+                        <input type="button" class="ui fluid button" onclick="createOrdername()" value="Next">
+                    </form>
+                </div>
+                <div id="section_icecreamform" class="ui form section pusher">
+                    <form class="field">
+                        <label>Icecream Flavour</label>
+                        <select class="item_id" id="icecream" required>
+                            <option selected>Choose one...</option>
+                            <option value="12">Chocolate</option>
+                        </select>
+                        <div class="ui left icon fluid input">
+                            <input type="number" id="quantity" placeholder="quantity" min="1" max="3">
+                            <i class="edit outline icon"></i>
+                        </div>
+                        <input type="text" id="order_id" value="1" hidden="hidden">
+                        <input type="button" class="ui fluid button" id="part_two" onclick="createorderitems()"
+                            value="Coming Soon" disabled>
+                    </form>
+                </div>
+                <div id="section_toppingform" class="ui form section pusher">
+                    <form class="field">
+                        <label>Toppings</label>
+                        <select class="item_id" name="topping">
+                            <option selected>Choose one...</option>
+                            <option value="11">Sprinkles</option>
+                        </select>
+                        <div class="ui left icon fluid input">
+                            <input type="number" id="quantity" placeholder="quantity" min="1" max="3">
+                            <i class="edit outline icon"></i>
+                        </div>
+                        <input type="text" id="order_id" value="1" hidden="hidden">
+                        <input type="button" class="ui fluid button" onclick="createorderitems()" value="Next">
+                    </form>
+                </div>
+                <div id="section_sauceform" class="ui form section pusher">
+                    <form class="field">
+                        <label>Sauce</label>
+                        <select class="item_id" name="sauce">
+                            <option selected>Choose One...</option>
+                            <option value="10">Hot Sauce</option>
+                        </select>
+                        <div class="ui left icon fluid input">
+                            <input type="number" id="quantity" placeholder="quantity" min="1" max="3">
+                            <i class="edit outline icon"></i>
+                        </div>
+                        <input type="text" id="order_id" value="1" hidden="hidden">
+                        <input type="button" class="ui fluid button" value="Next" onclick="createorderitems()">
+                    </form>
+                </div>
+                <div id="section_baseform" class="ui form section pusher">
+                    <form class="field">
+                        <label>Base Option</label>
+                        <select class="item_id" name="base" required>
+                            <option selected>Choose One...</option>
+                            <option value="1">Large Base</option>
+                        </select>
+                        <div class="ui left icon fluid input">
+                            <input type="number" id="quantity" placeholder="quantity" min="1" max="3">
+                            <i class="edit outline icon"></i>
+                        </div>
+                        <input type="text" id="order_id" value="1" hidden="hidden">
+                        <input type="button" class="ui fluid button" value="Submit" onclick="createorderitems()">
+                    </form>
+                </div>
+
+            </div>
+            <div id="page_posts" class="page">
+                <h2>Posts</h2>
+                <div id="post_container" method="GET" class="field grid-container-posts">
+                    <div id="post_name">
+                        <!-- database populates -->
+                    </div>
+                    <div id="publish_date">
+                        <!-- database populates -->
+                    </div>
+                    <div id="user_firstname">
+                        <!-- database populates -->
+                    </div>
+                    <div id="user_lastname">
+                        <!-- database populates -->
+                    </div>
+                    <div id="post_vote">
+                        <!-- unknown how to organise?? -->
+                    </div>
+                </div>
+            </div>
+            <div id="page_details" class="page">
+                <h2>Account Details</h2>
+                <div class="grid-container-userdetails">
+                    <div id="users_firstname">
+                        <h5>Firstname</h5>
+                        <!-- database populates -->
+                    </div>
+                    <div id="users_lastname">
+                        <h5>Lastname</h5>
+                        <!-- database populates -->
+                    </div>
+                    <div id="users_emailaddress">
+                        <h5>Email Address</h5>
+                        <!-- database populates -->
+                    </div>
+                    <div id="assigned_discounts">
+                        <h5>Discount</h5>
+                        <!-- database populates -->
+                    </div>
+                    <div id="assigned_orders">
+                        <h5>Orders</h5>
+                        <!-- database populates -->
+                    </div>
+                </div>
+            </div>
+            <div id="page_editdetails" class="page field">
+                <form method="POST">
+                    <h2>Edit Details</h2>
+                    <div class="ui left icon fluid input">
+                        <input type="text" id="edit_firstname" placeholder="Firstname" maxlength="30" pattern="\S+.*">
+                        <i class="edit outline icon"></i>
+                    </div>
+                    <div class="ui left icon fluid input">
+                        <input type="text" id="edit_lastname" placeholder="Lastname" maxlength="30" pattern="\S+.*">
+                        <i class="edit outline icon"></i>
+                    </div>
+                    <div class="ui left icon fluid input">
+                        <input type="email" id="edit_email" placeholder="Email Address">
+                        <i class="edit outline icon"></i>
+                    </div>
+                    <input type="button" class="ui fluid button" value="Save" onclick="editDetails()">
+                </form>
+            </div>
+            <div id="page_testingLinks" class="page">
+                <h2>These are my GET/READ paramaters</h2>
+                <div class="crud_parameters">
+                    <p>Display all previous orders from user:</p>
+                    <a href="../../model/webService.php?page=getAllOrders&user_id=39">webService.php?page=getAllOrders</a>
+                </div>
+                <div class="crud_parameters">
+                    <p>This will display all discounts:</p>
+                    <a href="../../model/webService.php?page=getAlldiscounts">webService.php?page=getAlldiscounts</a>
+                </div>
+                <div class="crud_parameters">
+                    <p>This will get all the user's information:</p>
+                    <a href="../../model/webService.php?page=getUserdetails&user_id=40">webService.php?page=getUserdetails</a>
+                </div>
+                <div class="crud_parameters">
+                    <p>This will display all the posts up to last week:</p>
+                    <a href="../../model/webService.php?page=getAllposts">webService.php?page=getAllposts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
