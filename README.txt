@@ -19,7 +19,17 @@ data from the database as $esult which is echoed to the user. If that doesn'y wo
 is caught and echo to the user instead.
 
 Explination of session as seen on webService.php line 6
-Here i check if tge session or "$_SESSION['sessionControl']" 
+Here I check if tge session or "$_SESSION['sessionControl']" 
 has being set by the application and if not i set one 
 before commencing with the rest of the code. If a session 
 already exsists it continues on with the rest of the code.
+
+Explination of ratelimiter.
+My 24 hr rate limiter works by first calculating the time using the number of second since January 1, 
+1970. Once the time has been set the function then checks to see if day_rate_limit is set and if not 
+sets it as an array. With that array it then adds/pushes the current time into the array and checks to see if 
+the size of the array is more then 1,000. If it finds that the array size is larger then it echo's to the user that
+their rate limit has exceeded and stops any further aciions.
+
+
+

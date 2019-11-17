@@ -1,19 +1,19 @@
 {
-    "short_name": "BB Icecream",
+    "short_name": "BBI",
     "name": "Big Belly Icecream",
     "icons": [
       {
-        "src": "../view/pages/png/icons/icecream_icon.png",
+        "src": "../png/icons/icecream_icon.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "../view/pages/png/icons/icecream_icon.png",
+        "src": "../png/icons/icecream_icon.png",
         "type": "image/png",
         "sizes": "512x512"
       }
     ],
-    "start_url": "/view/pages/index.html",
+    "start_url": "index.html", 
     "background_color": "#3367D6",
     "display": "standalone",
     "theme_color": "#3367D6",

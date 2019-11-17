@@ -5,62 +5,63 @@ class sessionControl {
     private $curr_request;
     private $new_request;
 
-    //I instantiated my session objects here because by keeping the numorous functions seperated 
-    //I could have a clear understanding of what does what and help other developer's understand my code.
+    //explination of code in README.txt file
     public function rateLimitChecker() {
-        if(!isset($_SESSION['last_times'])) {
-            $_SESSION['last_times'] = Array();
+        function less_than_a_sec($sec){
+            return time() - $sec <= 1;
         }
-        if(isset($_SESSION['last_time'])) {
-            //Explain the mathmathics... ok.
-            $last = strtotime($_SESSION['last_time']);
-            $curr = strtotime(date("Y-m-d h:i:s"));
-            // below mathmatic represents that $sec equals the last time a request was made ($last) and this current request ($curr)
-            // and if the last request minus this current request is less then or equal to one second then tell the users they have exceeded
-            // the rate limit and die. 
-            $sec = abs($last - $curr);
-            if ($sec <= 1) {
-                $reply = Array('Rate Limit Exceeded, no more then one request per sec.');
-                echo json_encode($reply);
-                die();      
-            }
+        if(!isset($_SESSION['sec_rate_limit'])) {
+            $_SESSION['sec_rate_limit'] = array();
         }
-        $_SESSION['last_time'] = time();
-        array_push($_SESSION['last_times'], time());
-        $_SESSION['last_time'] = date("Y-m-d h:i:s");
-    } 
-    public function Rate24HourCheck() {
-        $this->last_request = Array();
-        array_push($this->last_request, time());
-        $count = 0;
-        foreach($this->last_request as $item) {
-            $this->curr_request = time();
-            $count ++;
-            if($this->new_request > ($this->curr_request - 86400) && $count < 1000) {
-                echo json_encode(Array("Rate Limit Exceeded, no more then 1,000 in 24hrs"));
-                die();
-            }
+        array_push($_SESSION['sec_rate_limit'], time());
+
+        $_SESSION['sec_rate_limit'] = array_filter($_SESSION['sec_rate_limit'], "less_than_a_sec");
+        
+        if(sizeof($_SESSION['sec_rate_limit']) >= 6) { //needs to be 6 request pr second
+            echo json_encode("too many requests per second");
+            die();
         }
-        if($this->new_request < ($this->curr_request - 86400)) {
-            unset($this->last_request);
-        }
-        $this->last_request = time();
     }
+ 
+    // explination of rate limiter can be found in README.txt
+    public function Rate24HourCheck() {
+        function less_than_a_day($sec){
+            return time() - $sec <= 86400;
+        }
+        if(!isset($_SESSION['day_rate_limit'])) {
+            $_SESSION['day_rate_limit'] = array();
+        }
+        array_push($_SESSION['day_rate_limit'], time());
+
+        $_SESSION['day_rate_limit'] = array_filter($_SESSION['day_rate_limit'], "less_than_a_day");
+        
+        if(sizeof($_SESSION['day_rate_limit']) >= 1000) {
+            echo json_encode("too many requests per day");
+            die();
+        }
+    }
+    
     public function domainlock() {
         if($_SERVER['HTTP_HOST'] === "localhost"){
             // do nothing.
         } else {
-            $reply = Array("Error: website does not support your domain");
-            echo json_encode($reply);
+            throw new Exception("this website does not support your domain");
             die();
         }
     }
+
     public function referrexists() {
         if(!isset($_SERVER['HTTP_REFERER'])) {
-            $reply = Array("Error: no referer exsits.");
-            echo json_encode($reply);
+            throw new Exception("no referer exists");
             die();
         } 
     }
 }
+   /* future stuff 
+   public function endSession() {
+        session_start();
+        session_unset();
+        session_destroy();
+        // need to have go to index.html
+    } */
 ?>

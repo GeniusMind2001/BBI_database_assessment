@@ -2,100 +2,121 @@
     padding: 0;
     margin: 0;
 }
-h2 {
-    margin: 10px;
+:root {
+    --black: black;
+    --white: white;
+    --disabled: rgb(80, 80, 80);
+}
+
+:root[theme='dark'] {
+    --black: black;
+    --white: white;
+    --disabled: rgb(80, 80, 80);
+    filter: invert(1) brightness(0.9);
+}
+.loader {
+    position: relative;
 }
 .crud_parameters {
     margin: 20px;
-    border: solid 1px black;
+    border: solid 1px var(--black);
     padding: 10px;
 }
 .page {
+    display: none;
+    background-color: var(--white);
+    margin-top: 10%;
+}
+form {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid white;
+}
+#toggle-theme {
+    padding: 10px;
     margin: 15px;
+    background-color: var(--white);
+}
+#section_baseform, #section_sauceform, #section_toppingform, #section_icecreamform, #section_ordername {
+    display: none;
+}
+input:not(:focus):not(:placeholder-shown):invalid {
+    border-color: red;
+    color: red;
+}
+input:valid {
+    border-color: green;
+}
+.first-names::before {
+    content: "Firstname: ";
+    font-weight: bold;
+    margin-right: 10px;
+}
+.last-names::before {
+    content: "Lastname: ";
+    font-weight: bold;
+    margin-right: 10px;
+}
+.post-names::before {
+    content: "Post Name: ";
+    font-weight: bold;
+    margin-right: 10px;
+}
+.vote-num::before {
+    content: "Votes: ";
+    font-weight: bold;
+    margin-right: 10px;
+}
+.pub-date::before {
+    content: "Publish Date: ";
+    font-weight: bold;
+    margin-right: 10px;
+}
+#post_container {
+    display: inline-flex;
     padding: 20px;
-    border: black 1px solid;
 }
-.input {
-    margin: 5px;
-}
-/* Display Grid 
-.grid-container-posts {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-template-rows: 20px 20px 20px;
-    
-}
-#post_name {
-    grid-column: 1/4;
-    grid-row: 1;
-    
-    margin: 5px;
-}
-#post_items {
-    grid-column: 2/3;
-    grid-row: 2;
-    
-    margin: 5px;
-}
-#post_quantity {
-    grid-column: 3/4;
-    grid-row: 2;
-    
-    margin: 5px;
-}
-#post_images {
-    grid-column: 4;
-    grid-row: 1/4;
-   
-    margin: 5px;
-}
-#post_vote {
-    grid-column: 5;
-    grid-row: 2/3;
-    
-    margin: 5px;
-}
+
+
+
 .grid-container-userdetails {
     display: grid;
-    
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: center;
+    width: 90%;
 }
 #users_firstname {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    
+    grid-column: 1/2;
+    grid-row: 1;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
     margin: 5px;
 }
 #users_lastname {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    
+    grid-column: 3/4;
+    grid-row: 1;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
     margin: 5px;
 }
 #users_emailaddress {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    
+    grid-column: 1;
+    grid-row: 2;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
     margin: 5px;
 }
 #assigned_discounts {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
-   
+    grid-column: 1/4;
+    grid-row: 3;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
     margin: 5px;
 }
 #assigned_orders {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    
+    grid-column: 1/4;
+    grid-row: 4;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
     margin: 5px;
-} */
+} 
